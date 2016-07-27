@@ -1,0 +1,13 @@
+version: '2'
+services:
+  portal:
+    build: .
+    depends_on:
+     - mysql
+  mysql:
+    image: mdelapenya/mysql-utf8
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+      - MYSQL_DATABASE=lportal
+      - character-set-server=utf8mb4
+      - collation-server=utf8mb4_unicode_ci
