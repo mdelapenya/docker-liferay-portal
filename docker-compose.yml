@@ -1,0 +1,15 @@
+version: '2'
+services:
+  portal:
+    build: .
+    depends_on:
+     - postgres
+    ports:
+     - "8080:8080"
+     - "11311:11311"
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=my-secret-pw
+      - POSTGRES_USER=liferay
+      - POSTGRES_DB=lportal
