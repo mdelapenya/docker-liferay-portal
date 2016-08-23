@@ -2,9 +2,9 @@
 This repository contains some **nonofficial** pet-projects on how to use Liferay with Docker.
 
 # Usage
-To start a container from this image please run following command, which will start a Liferay Portal 7 GA1 instance running on Tomcat 8.0.32, with an embedded HSQL database:
+To start a container from this image please run following command, which will start a Liferay Portal 7 GA2 instance running on Tomcat 8.0.32, with an embedded HSQL database:
 ```
-docker run -p 9000:8080 mdelapenya/liferay-portal:7-ce-ga1-tomcat-hsql
+docker run -p 9000:8080 mdelapenya/liferay-portal:7-ce-ga2-tomcat-hsql
 ```
 
 # License
