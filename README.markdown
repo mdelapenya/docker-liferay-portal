@@ -2,7 +2,7 @@
 This repository contains some **nonofficial** pet-projects on how to use Liferay with Docker.
 
 # Usage
-To start a container from this image please run following `docker-compose` command, which will start a Liferay Portal 6.2 GA6 instance running on Tomcat 8.0.32, with an Oracle database instance running in another container:
+To start a container from this image please run following `docker-compose` command, which will start a Liferay Portal 6.2 GA6 instance running on Tomcat 7.0.62, with an Oracle database instance running in another container:
 ```
 docker-compose up
 ```
