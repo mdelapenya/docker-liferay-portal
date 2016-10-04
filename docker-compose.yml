@@ -1,0 +1,10 @@
+version: '2'
+services:
+  portal:
+    build: .
+    links:
+      - oracledb
+    ports:
+      - "8080:8080"
+  oracledb:
+    image: alexeiled/docker-oracle-xe-11g
