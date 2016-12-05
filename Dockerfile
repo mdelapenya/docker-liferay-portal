@@ -5,6 +5,7 @@ RUN apt-get update \
   && apt-get install curl \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  && useradd -ms /bin/bash liferay
 
 ENV LIFERAY_HOME=/usr/local/liferay-ce-portal-7.0-ga3
 
@@ -23,7 +24,11 @@ RUN set -x \
 			&& unzip liferay-ce-portal-tomcat-7.0-ga3-20160804222206210.zip \
 			&& rm liferay-ce-portal-tomcat-7.0-ga3-20160804222206210.zip
 
+RUN chown -R liferay:liferay $LIFERAY_HOME
+
 EXPOSE 8080/tcp
 EXPOSE 11311/tcp
+
+USER liferay
 
 ENTRYPOINT ["catalina.sh", "run"]
