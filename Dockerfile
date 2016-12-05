@@ -4,7 +4,7 @@ MAINTAINER Manuel de la Peña <manuel.delapenya@liferay.com>
 RUN apt-get update \
   && apt-get install curl \
   && apt-get clean \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
   && useradd -ms /bin/bash liferay
 
 ENV LIFERAY_HOME=/usr/local/liferay-ce-portal-7.0-ga3
