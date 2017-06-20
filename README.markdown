@@ -2,6 +2,7 @@
 This repository contains some **nonofficial** pet-projects on how to use Liferay with Docker.
 
 # Available Liferay Releases
+  - Liferay 7.0.3 GA4
   - Liferay 7.0.2 GA3
   - Liferay 7.0.1 GA2
   - Liferay 7.0.0 GA1
@@ -28,17 +29,17 @@ These are the supported App servers:
 The convention for branch names, using `-` as separator, is:
   - Liferay major version: `7`
   - Liferay community edition: `ce`
-  - Liferay release: `ga3`
+  - Liferay release: `ga4`
   - Application server: `tomcat`
   - DBMS: `hsql`
 
-So, if you are using Liferay 7 GA3 with MySQL or PostgreSQL, you should use the `7-ce-ga3-tomcat-mysql` or `7-ce-ga3-tomcat-postgres` branches, respectively.
+So, if you are using Liferay 7 GA4 with MySQL or PostgreSQL, you should use the `7-ce-ga4-tomcat-mysql` or `7-ce-ga4-tomcat-postgres` branches, respectively.
 
 The git branches are named using the same convention, i.e.:
 
-  https://github.com/mdelapenya/docker-liferay-portal/tree/7-ce-ga1-tomcat-hsql
-  https://github.com/mdelapenya/docker-liferay-portal/tree/7-ce-ga1-tomcat-mysql
-  https://github.com/mdelapenya/docker-liferay-portal/tree/7-ce-ga1-tomcat-postgres
+  https://github.com/mdelapenya/docker-liferay-portal/tree/7-ce-ga4-tomcat-hsql
+  https://github.com/mdelapenya/docker-liferay-portal/tree/7-ce-ga4-tomcat-mysql
+  https://github.com/mdelapenya/docker-liferay-portal/tree/7-ce-ga4-tomcat-postgres
 
 # License
 These docker images are free software ("Licensed Software"); you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.
