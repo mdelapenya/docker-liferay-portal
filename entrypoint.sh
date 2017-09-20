@@ -5,6 +5,7 @@ set -o errexit
 main() {
   show_motd
   prepare_liferay_portal_properties
+  prepare_liferay_tomcat_config
   prepare_liferay_deploy_directory
   prepare_liferay_osgi_configs_directory
   run_portal "$@"
@@ -91,6 +92,28 @@ prepare_liferay_portal_properties() {
   sed -i -e "s/jdbc\.default\.password=liferay$/jdbc\.default\.password=$LIFERAY_MYSQL_ROOT_PASSWORD/g" $LIFERAY_HOME/portal-ext.properties
 
   sed -i -e "s/web\.server\.protocol=https$/web\.server\.protocol=$LIFERAY_WEB_SERVER_PROTOCOL/g" $LIFERAY_HOME/portal-ext.properties
+
+  echo "
+  Continuing.
+  "
+}
+
+prepare_liferay_tomcat_config() {
+  if [[ ! -f "$CONFIG_DIR/setenv.sh" ]]; then
+    echo "No 'configs/setenv.sh' file found.
+  If you wish to provide custom tomcat JVM settings, make sure
+  you include a 'configs/setenv.sh' file in the 
+  root of your project.
+
+  Continuing.
+  "
+    return 0
+  fi
+
+  echo "Tomcat configuration (setenv.sh) file found.
+  "
+
+  cp -r $CONFIG_DIR/setenv.sh $CATALINA_HOME/bin/setenv.sh
 
   echo "
   Continuing.
