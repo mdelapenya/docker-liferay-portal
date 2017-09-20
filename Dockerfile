@@ -8,6 +8,7 @@ RUN apt-get update \
   && useradd -ms /bin/bash liferay
 
 ENV LIFERAY_HOME=/usr/local/liferay-ce-portal-7.0-ga4
+ENV LIFERAY_SHARED=/storage/liferay
 ENV CATALINA_HOME=$LIFERAY_HOME/tomcat-8.0.32
 ENV PATH=$CATALINA_HOME/bin:$PATH
 ENV LIFERAY_TOMCAT_URL=https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.0.3%20GA4/liferay-ce-portal-tomcat-7.0-ga4-20170613175008905.zip/download
@@ -42,5 +43,6 @@ EXPOSE 8080/tcp
 EXPOSE 11311/tcp
 
 USER liferay
+VOLUME /storage
 
 ENTRYPOINT ["entrypoint.sh"]
