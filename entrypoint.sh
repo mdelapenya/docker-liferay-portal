@@ -73,9 +73,9 @@ prepare_liferay_osgi_configs_directory() {
 
 prepare_liferay_portal_properties() {
   if [[ ! -f "$CONFIG_DIR/portal-ext.properties" ]]; then
-    echo "No 'portal-ext.properties' file found.
+    echo "No 'configs/portal-ext.properties' file found.
   If you wish to use a custom properties file make sure
-  you include a 'portal-ext.properties' file in the 
+  you include a 'configs/portal-ext.properties' file in the 
   root of your project.
 
   Continuing.

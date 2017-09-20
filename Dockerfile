@@ -19,8 +19,8 @@ ENV CONFIG_DIR=/tmp/configs
 ENV DEPLOY_DIR=/tmp/deploy
 
 COPY ./entrypoint.sh /usr/local/bin
-ONBUILD COPY ./configs/ /tmp
-ONBUILD COPY ./deploy/ /tmp
+ONBUILD COPY ./configs/ /tmp/configs/
+ONBUILD COPY ./deploy/ /tmp/deploy/
 
 WORKDIR /usr/local
 
