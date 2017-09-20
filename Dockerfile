@@ -42,7 +42,7 @@ RUN mkdir -p "$LIFERAY_HOME" \
 EXPOSE 8080/tcp
 EXPOSE 11311/tcp
 
-USER liferay
 VOLUME /storage
 
 ENTRYPOINT ["entrypoint.sh"]
+CMD ["catalina.sh", "run"]

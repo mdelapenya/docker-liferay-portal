@@ -7,7 +7,7 @@ main() {
   prepare_liferay_portal_properties
   prepare_liferay_deploy_directory
   prepare_liferay_osgi_configs_directory
-  run_portal
+  run_portal "$@"
 }
 
 show_motd() {
@@ -92,7 +92,28 @@ prepare_liferay_portal_properties() {
 }
 
 run_portal() {
-  exec catalina.sh run
+
+  set -e
+
+  # Drop root privileges if we are running liferay
+  # allow the container to be started with `--user`
+  if [ "$1" = 'catalina.sh' -a "$(id -u)" = '0' ]; then
+    # Change the ownership of Liferay Shared Volume to liferay
+
+    if [[ ! -d "$LIFERAY_SHARED" ]]; then
+      mkdir -p $LIFERAY_SHARED
+    fi
+
+    chown -R liferay:liferay $LIFERAY_SHARED
+    chown -R liferay:liferay $LIFERAY_HOME
+    
+    set -- gosu liferay "$@"
+  fi
+
+  # As argument is not related to liferay,
+  # then assume that user wants to run his own process,
+  # for example a `bash` shell to explore this image
+  exec "$@"
 }
 
 main "$@"
