@@ -11,6 +11,8 @@ ENV LIFERAY_HOME=/usr/local/liferay-ce-portal-7.0-ga4
 ENV CATALINA_HOME=$LIFERAY_HOME/tomcat-8.0.32
 ENV PATH=$CATALINA_HOME/bin:$PATH
 ENV LIFERAY_TOMCAT_URL=https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.0.3%20GA4/liferay-ce-portal-tomcat-7.0-ga4-20170613175008905.zip/download
+ENV GOSU_VERSION 1.10
+ENV GOSU_URL=https://github.com/tianon/gosu/releases/download/$GOSU_VERSION
 
 WORKDIR /usr/local
 
@@ -19,7 +21,15 @@ RUN mkdir -p "$LIFERAY_HOME" \
 			&& curl -fSL "$LIFERAY_TOMCAT_URL" -o liferay-ce-portal-tomcat-7.0-ga4-20170613175008905.zip \
 			&& unzip liferay-ce-portal-tomcat-7.0-ga4-20170613175008905.zip \
 			&& rm liferay-ce-portal-tomcat-7.0-ga4-20170613175008905.zip \
-      && chown -R liferay:liferay $LIFERAY_HOME
+      && chown -R liferay:liferay $LIFERAY_HOME \
+      && wget -O /usr/local/bin/gosu "$GOSU_URL/gosu-$(dpkg --print-architecture)" \
+      && wget -O /usr/local/bin/gosu.asc "$GOSU_URL/gosu-$(dpkg --print-architecture).asc" \
+      && export GNUPGHOME="$(mktemp -d)" \
+      && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
+      && gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
+      && rm -rf "$GNUPGHOME" /usr/local/bin/gosu.asc \
+      && chmod +x /usr/local/bin/gosu \
+      && gosu nobody true
 
 EXPOSE 8080/tcp
 EXPOSE 11311/tcp
