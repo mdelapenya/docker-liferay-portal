@@ -2,7 +2,7 @@ FROM mdelapenya/jdk:8-openjdk
 MAINTAINER Manuel de la Peña <manuel.delapenya@liferay.com>
 
 RUN apt-get update \
-  && apt-get install -y curl \
+  && apt-get install -y curl tree \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
   && useradd -ms /bin/bash liferay
@@ -13,6 +13,12 @@ ENV PATH=$CATALINA_HOME/bin:$PATH
 ENV LIFERAY_TOMCAT_URL=https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.0.3%20GA4/liferay-ce-portal-tomcat-7.0-ga4-20170613175008905.zip/download
 ENV GOSU_VERSION 1.10
 ENV GOSU_URL=https://github.com/tianon/gosu/releases/download/$GOSU_VERSION
+ENV CONFIG_DIR=/tmp/configs
+ENV DEPLOY_DIR=/tmp/deploy
+
+COPY ./entrypoint.sh /usr/local/bin
+ONBUILD COPY ./configs/ /tmp
+ONBUILD COPY ./deploy/ /tmp
 
 WORKDIR /usr/local
 
@@ -29,11 +35,12 @@ RUN mkdir -p "$LIFERAY_HOME" \
       && gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
       && rm -rf "$GNUPGHOME" /usr/local/bin/gosu.asc \
       && chmod +x /usr/local/bin/gosu \
-      && gosu nobody true
+      && gosu nobody true \
+      && chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 8080/tcp
 EXPOSE 11311/tcp
 
 USER liferay
 
-ENTRYPOINT ["catalina.sh", "run"]
+ENTRYPOINT ["entrypoint.sh"]
