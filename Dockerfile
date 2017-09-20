@@ -25,10 +25,10 @@ ONBUILD COPY ./deploy/ /tmp
 WORKDIR /usr/local
 
 RUN mkdir -p "$LIFERAY_HOME" \
-			&& set -x \
-			&& curl -fSL "$LIFERAY_TOMCAT_URL" -o liferay-ce-portal-tomcat-7.0-ga4-20170613175008905.zip \
-			&& unzip liferay-ce-portal-tomcat-7.0-ga4-20170613175008905.zip \
-			&& rm liferay-ce-portal-tomcat-7.0-ga4-20170613175008905.zip \
+      && set -x \
+      && curl -fSL "$LIFERAY_TOMCAT_URL" -o liferay-ce-portal-tomcat-7.0-ga4-20170613175008905.zip \
+      && unzip liferay-ce-portal-tomcat-7.0-ga4-20170613175008905.zip \
+      && rm liferay-ce-portal-tomcat-7.0-ga4-20170613175008905.zip \
       && chown -R liferay:liferay $LIFERAY_HOME \
       && wget -O /usr/local/bin/gosu "$GOSU_URL/gosu-$(dpkg --print-architecture)" \
       && wget -O /usr/local/bin/gosu.asc "$GOSU_URL/gosu-$(dpkg --print-architecture).asc" \
