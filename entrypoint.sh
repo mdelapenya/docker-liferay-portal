@@ -33,10 +33,12 @@ prepare_liferay_deploy_directory() {
   The following contents are going to be synchronized
   with Liferay:
   "
-
   tree $DEPLOY_DIR
-  mkdir -p $LIFERAY_HOME/deploy
-  cp -r $DEPLOY_DIR/* $LIFERAY_HOME/deploy
+
+  [ -f $DEPLOY_DIR/*.lpkg ] && cp $DEPLOY_DIR/*.lpkg $LIFERAY_HOME/osgi/marketplace
+  [ -f $DEPLOY_DIR/*.jar ] && cp $DEPLOY_DIR/*.jar $LIFERAY_HOME/osgi/modules
+  [ -f $DEPLOY_DIR/*.war ] && cp $DEPLOY_DIR/*.war $LIFERAY_HOME/osgi/war
+  [ -f $DEPLOY_DIR/*.xml ] && cp $DEPLOY_DIR/*.xml $LIFERAY_HOME/deploy
 
   echo "
   Continuing.
