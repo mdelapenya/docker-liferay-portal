@@ -9,7 +9,6 @@ RUN apt-get update \
 
 ENV LIFERAY_HOME=/usr/local/liferay-ce-portal-7.0-ga4
 ENV LIFERAY_SHARED=/storage/liferay
-ENV LIFERAY_MYSQL_ROOT_PASSWORD=liferay
 ENV LIFERAY_WEB_SERVER_PROTOCOL=https
 ENV LIFERAY_CONFIG_DIR=/tmp/liferay/configs
 ENV LIFERAY_DEPLOY_DIR=/tmp/liferay/deploy
