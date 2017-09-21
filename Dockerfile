@@ -11,13 +11,13 @@ ENV LIFERAY_HOME=/usr/local/liferay-ce-portal-7.0-ga4
 ENV LIFERAY_SHARED=/storage/liferay
 ENV LIFERAY_MYSQL_ROOT_PASSWORD=liferay
 ENV LIFERAY_WEB_SERVER_PROTOCOL=https
+ENV LIFERAY_CONFIG_DIR=/tmp/liferay/configs
+ENV LIFERAY_DEPLOY_DIR=/tmp/liferay/deploy
 ENV CATALINA_HOME=$LIFERAY_HOME/tomcat-8.0.32
 ENV PATH=$CATALINA_HOME/bin:$PATH
 ENV LIFERAY_TOMCAT_URL=https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.0.3%20GA4/liferay-ce-portal-tomcat-7.0-ga4-20170613175008905.zip/download
 ENV GOSU_VERSION 1.10
 ENV GOSU_URL=https://github.com/tianon/gosu/releases/download/$GOSU_VERSION
-ENV CONFIG_DIR=/tmp/configs
-ENV DEPLOY_DIR=/tmp/deploy
 
 WORKDIR /usr/local
 
@@ -39,8 +39,8 @@ RUN mkdir -p "$LIFERAY_HOME" \
 COPY ./entrypoint.sh /usr/local/bin
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-ONBUILD COPY ./configs/ /tmp/configs/
-ONBUILD COPY ./deploy/ /tmp/deploy/
+ONBUILD COPY ./configs/ $LIFERAY_CONFIG_DIR
+ONBUILD COPY ./deploy/ $LIFERAY_DEPLOY_DIR
 
 EXPOSE 8080/tcp
 EXPOSE 11311/tcp

@@ -19,7 +19,7 @@ show_motd() {
 }
 
 prepare_liferay_deploy_directory() {
-  if [ ! -f $DEPLOY_DIR/* ]; then
+  if [ ! -f $LIFERAY_DEPLOY_DIR/* ]; then
     echo "No deploy files found.
   If you wish to deploy customizations to Liferay make
   sure you include a 'deploy' directory in the root of 
@@ -34,12 +34,12 @@ prepare_liferay_deploy_directory() {
   The following contents are going to be synchronized
   with Liferay:
   "
-  tree $DEPLOY_DIR
+  tree $LIFERAY_DEPLOY_DIR
 
-  [ -f $DEPLOY_DIR/*.lpkg ] && cp $DEPLOY_DIR/*.lpkg $LIFERAY_HOME/osgi/marketplace
-  [ -f $DEPLOY_DIR/*.jar ] && cp $DEPLOY_DIR/*.jar $LIFERAY_HOME/osgi/modules
-  [ -f $DEPLOY_DIR/*.war ] && cp $DEPLOY_DIR/*.war $LIFERAY_HOME/osgi/war
-  [ -f $DEPLOY_DIR/*.xml ] && cp $DEPLOY_DIR/*.xml $LIFERAY_HOME/deploy
+  [ -f $LIFERAY_DEPLOY_DIR/*.lpkg ] && cp $LIFERAY_DEPLOY_DIR/*.lpkg $LIFERAY_HOME/osgi/marketplace
+  [ -f $LIFERAY_DEPLOY_DIR/*.jar ] && cp $LIFERAY_DEPLOY_DIR/*.jar $LIFERAY_HOME/osgi/modules
+  [ -f $LIFERAY_DEPLOY_DIR/*.war ] && cp $LIFERAY_DEPLOY_DIR/*.war $LIFERAY_HOME/osgi/war
+  [ -f $LIFERAY_DEPLOY_DIR/*.xml ] && cp $LIFERAY_DEPLOY_DIR/*.xml $LIFERAY_HOME/deploy
 
   echo "
   Continuing.
@@ -47,7 +47,7 @@ prepare_liferay_deploy_directory() {
 }
 
 prepare_liferay_osgi_configs_directory() {
-  if [[ ! -d "$CONFIG_DIR/osgi" ]]; then
+  if [[ ! -d "$LIFERAY_CONFIG_DIR/osgi" ]]; then
     echo "No 'configs/osgi' directory found.
   If you wish to deploy custom OSGi configurations to
   Liferay make sure you include a 'configs/osgi' directory
@@ -63,9 +63,9 @@ prepare_liferay_osgi_configs_directory() {
   with Liferay:
   "
 
-  tree $CONFIG_DIR/osgi
+  tree $LIFERAY_CONFIG_DIR/osgi
   mkdir -p $LIFERAY_HOME/osgi/configs
-  cp -r $CONFIG_DIR/osgi/* $LIFERAY_HOME/osgi/configs 2>/dev/null || true
+  cp -r $LIFERAY_CONFIG_DIR/osgi/* $LIFERAY_HOME/osgi/configs 2>/dev/null || true
 
   echo "
   Continuing.
@@ -73,7 +73,7 @@ prepare_liferay_osgi_configs_directory() {
 }
 
 prepare_liferay_portal_properties() {
-  if [[ ! -f "$CONFIG_DIR/portal-ext.properties" ]]; then
+  if [[ ! -f "$LIFERAY_CONFIG_DIR/portal-ext.properties" ]]; then
     echo "No 'configs/portal-ext.properties' file found.
   If you wish to use a custom properties file make sure
   you include a 'configs/portal-ext.properties' file in the 
@@ -87,7 +87,7 @@ prepare_liferay_portal_properties() {
   echo "Portal properties (portal-ext.properties) file found.
   "
 
-  cp -r $CONFIG_DIR/portal-ext.properties $LIFERAY_HOME/portal-ext.properties
+  cp -r $LIFERAY_CONFIG_DIR/portal-ext.properties $LIFERAY_HOME/portal-ext.properties
 
   sed -i -e "s/jdbc\.default\.password=liferay$/jdbc\.default\.password=$LIFERAY_MYSQL_ROOT_PASSWORD/g" $LIFERAY_HOME/portal-ext.properties
 
@@ -99,7 +99,7 @@ prepare_liferay_portal_properties() {
 }
 
 prepare_liferay_tomcat_config() {
-  if [[ ! -f "$CONFIG_DIR/setenv.sh" ]]; then
+  if [[ ! -f "$LIFERAY_CONFIG_DIR/setenv.sh" ]]; then
     echo "No 'configs/setenv.sh' file found.
   If you wish to provide custom tomcat JVM settings, make sure
   you include a 'configs/setenv.sh' file in the 
@@ -113,7 +113,7 @@ prepare_liferay_tomcat_config() {
   echo "Tomcat configuration (setenv.sh) file found.
   "
 
-  cp -r $CONFIG_DIR/setenv.sh $CATALINA_HOME/bin/setenv.sh
+  cp -r $LIFERAY_CONFIG_DIR/setenv.sh $CATALINA_HOME/bin/setenv.sh
 
   echo "
   Continuing.
