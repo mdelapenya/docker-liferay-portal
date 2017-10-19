@@ -38,9 +38,6 @@ RUN mkdir -p "$LIFERAY_HOME" \
 COPY ./entrypoint.sh /usr/local/bin
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-ONBUILD COPY ./configs/ $LIFERAY_CONFIG_DIR
-ONBUILD COPY ./deploy/ $LIFERAY_DEPLOY_DIR
-
 EXPOSE 8080/tcp
 EXPOSE 11311/tcp
 
