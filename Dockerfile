@@ -7,7 +7,7 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
   && useradd -ms /bin/bash liferay
 
-ENV LIFERAY_HOME=/usr/local/liferay-ce-portal-7.0-ga4
+ENV LIFERAY_HOME=/usr/local/liferay-ce-portal-7.0-ga5
 ENV LIFERAY_SHARED=/storage/liferay
 ENV LIFERAY_WEB_SERVER_PROTOCOL=https
 ENV LIFERAY_CONFIG_DIR=/tmp/liferay/configs
