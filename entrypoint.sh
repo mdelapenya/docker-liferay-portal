@@ -19,12 +19,11 @@ show_motd() {
 }
 
 prepare_liferay_deploy_directory() {
-  if [ ! -f $LIFERAY_DEPLOY_DIR/* ]; then
+  if [ ! -d $LIFERAY_DEPLOY_DIR ]; then
     echo "No deploy files found.
   If you wish to deploy customizations to Liferay make
   sure you include a 'deploy' directory in the root of 
   your project.
-
   Continuing.
   "
     return 0
@@ -36,10 +35,28 @@ prepare_liferay_deploy_directory() {
   "
   tree $LIFERAY_DEPLOY_DIR
 
-  [ -f $LIFERAY_DEPLOY_DIR/*.lpkg ] && cp $LIFERAY_DEPLOY_DIR/*.lpkg $LIFERAY_HOME/osgi/marketplace
-  [ -f $LIFERAY_DEPLOY_DIR/*.jar ] && cp $LIFERAY_DEPLOY_DIR/*.jar $LIFERAY_HOME/osgi/modules
-  [ -f $LIFERAY_DEPLOY_DIR/*.war ] && cp $LIFERAY_DEPLOY_DIR/*.war $LIFERAY_HOME/osgi/war
-  [ -f $LIFERAY_DEPLOY_DIR/*.xml ] && cp $LIFERAY_DEPLOY_DIR/*.xml $LIFERAY_HOME/deploy
+  if [[ ! -d "$LIFERAY_HOME/osgi/modules" ]]; then
+    mkdir $LIFERAY_HOME/osgi/modules
+  fi
+
+  if [[ ! -d "$LIFERAY_HOME/osgi/war" ]]; then
+    mkdir $LIFERAY_HOME/osgi/war
+  fi
+
+  for lpkg in $LIFERAY_DEPLOY_DIR/*.lpkg; do
+    [ -e "$lpkg" ] && cp $LIFERAY_DEPLOY_DIR/*.lpkg $LIFERAY_HOME/osgi/marketplace
+    break
+  done
+
+  for jar in $LIFERAY_DEPLOY_DIR/*.jar; do
+    [ -e "$jar" ] && cp $LIFERAY_DEPLOY_DIR/*.jar $LIFERAY_HOME/osgi/modules
+    break
+  done
+
+  for war in $LIFERAY_DEPLOY_DIR/*.war; do
+    [ -e "$war" ] && cp $LIFERAY_DEPLOY_DIR/*.war $LIFERAY_HOME/osgi/war
+    break
+  done
 
   echo "
   Continuing.
