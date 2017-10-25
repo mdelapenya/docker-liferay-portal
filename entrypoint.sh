@@ -106,8 +106,6 @@ prepare_liferay_portal_properties() {
 
   cp -r $LIFERAY_CONFIG_DIR/portal-ext.properties $LIFERAY_HOME/portal-ext.properties
 
-  sed -i -e "s/web\.server\.protocol=https$/web\.server\.protocol=$LIFERAY_WEB_SERVER_PROTOCOL/g" $LIFERAY_HOME/portal-ext.properties
-
   echo "
   Continuing.
   "
