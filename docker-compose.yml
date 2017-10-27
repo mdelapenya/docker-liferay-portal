@@ -2,6 +2,9 @@ version: '2'
 services:
   portal:
     build: .
+    environment:
+      - LIFERAY_WEB_PERIOD_SERVER_PERIOD_PROTOCOL=http
+      - LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_PASSWORD=my-secret-pw
     depends_on:
      - postgres
     ports:
