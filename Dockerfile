@@ -22,7 +22,7 @@ WORKDIR /usr/local
 
 RUN mkdir -p "$LIFERAY_HOME" \
       && set -x \
-      && curl -fSL "$LIFERAY_TOMCAT_URL" -o liferay-ce-portal-tomcat-7.0-ga5-20171018150113838.zip \
+      && curl -kfSL "$LIFERAY_TOMCAT_URL" -o liferay-ce-portal-tomcat-7.0-ga5-20171018150113838.zip \
       && unzip liferay-ce-portal-tomcat-7.0-ga5-20171018150113838.zip \
       && rm liferay-ce-portal-tomcat-7.0-ga5-20171018150113838.zip \
       && chown -R liferay:liferay $LIFERAY_HOME \
