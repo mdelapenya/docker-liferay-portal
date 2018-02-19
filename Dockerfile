@@ -19,7 +19,7 @@ ENV LIFERAY_TOMCAT_URL=https://sourceforge.net/projects/lportal/files/Liferay%20
 WORKDIR /usr/local
 
 RUN set -x \
-			&& curl -fSL "$LIFERAY_TOMCAT_URL" -o liferay-portal-tomcat-7.0-ce-ga2-20160610113014153.zip \
+			&& curl -kfSL "$LIFERAY_TOMCAT_URL" -o liferay-portal-tomcat-7.0-ce-ga2-20160610113014153.zip \
 			&& unzip liferay-portal-tomcat-7.0-ce-ga2-20160610113014153.zip \
 			&& rm liferay-portal-tomcat-7.0-ce-ga2-20160610113014153.zip
 
