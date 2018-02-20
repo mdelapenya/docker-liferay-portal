@@ -24,6 +24,7 @@ RUN set -x \
 			&& unzip liferay-ce-portal-tomcat-7.0-ga3-20160804222206210.zip \
 			&& rm liferay-ce-portal-tomcat-7.0-ga3-20160804222206210.zip
 
+COPY .configs/setenv.sh $CATALINA_HOME/bin/setenv.sh
 RUN chown -R liferay:liferay $LIFERAY_HOME
 
 EXPOSE 8080/tcp
