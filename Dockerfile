@@ -25,6 +25,7 @@ RUN set -x \
 
 COPY ./configs/setenv.sh $CATALINA_HOME/bin/setenv.sh
 EXPOSE 8080/tcp
+EXPOSE 9000/tcp
 EXPOSE 11311/tcp
 
 ENTRYPOINT ["catalina.sh", "run"]
