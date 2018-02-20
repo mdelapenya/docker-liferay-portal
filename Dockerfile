@@ -28,6 +28,7 @@ COPY ./configs/setenv.sh $CATALINA_HOME/bin/setenv.sh
 RUN chown -R liferay:liferay $LIFERAY_HOME
 
 EXPOSE 8080/tcp
+EXPOSE 9000/tcp
 EXPOSE 11311/tcp
 
 USER liferay
