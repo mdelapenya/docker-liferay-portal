@@ -30,5 +30,6 @@ RUN chown -R liferay:liferay $LIFERAY_HOME
 USER liferay
 
 EXPOSE 8080/tcp
+EXPOSE 9000/tcp
 
 ENTRYPOINT ["catalina.sh", "run"]
