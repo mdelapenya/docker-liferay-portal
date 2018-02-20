@@ -35,6 +35,7 @@ RUN mkdir -p "$LIFERAY_HOME" \
       && chmod +x /usr/local/bin/gosu \
       && gosu nobody true
 
+COPY ./configs/setenv.sh $CATALINA_HOME/bin/setenv.sh
 COPY ./entrypoint.sh /usr/local/bin
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
