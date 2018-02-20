@@ -40,6 +40,7 @@ COPY ./entrypoint.sh /usr/local/bin
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 8080/tcp
+EXPOSE 9000/tcp
 EXPOSE 11311/tcp
 
 VOLUME /storage
