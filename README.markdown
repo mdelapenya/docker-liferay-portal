@@ -11,6 +11,12 @@ This repository contains some **nonofficial** pet-projects on how to use Liferay
   - Liferay 7.0.0 Beta7
   - Liferay 6.2.0 GA6
 
+# Environment variables
+
+### DEBUG_MODE
+
+This variable is optional and allows you to specify if the container is run using a debug configuration. In the case of Tomcat, port 9000 will be exposed for debugging the application server.
+
 # Customized Environment support
 There are some different image configurations supported under this repository, depending on if you want to use Liferay Portal with a different database or application server.
 
