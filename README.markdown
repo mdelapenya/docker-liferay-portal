@@ -2,6 +2,7 @@
 This repository contains some **nonofficial** pet-projects on how to use Liferay with Docker.
 
 # Available Liferay Releases
+  - Liferay 7.0.5 GA6
   - Liferay 7.0.4 GA5
   - Liferay 7.0.3 GA4
   - Liferay 7.0.2 GA3
