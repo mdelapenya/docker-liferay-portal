@@ -20,6 +20,10 @@ This repository contains some **nonofficial** pet-projects on how to use Liferay
 
 This variable is optional and allows you to specify if the container is run using a debug configuration. In the case of Tomcat, port 9000 will be exposed for debugging the application server.
 
+### JVM_TUNING_MEMORY
+
+This variable is optional and allows you to specify the Xmx and Xms JVM memory configuration. If no variable is passed, then 2048m will be used as default value.
+
 # Customized Environment support
 There are some different image configurations supported under this repository, depending on if you want to use Liferay Portal with a different database or application server.
 
