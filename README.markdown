@@ -2,6 +2,7 @@
 This repository contains some **nonofficial** pet-projects on how to use Liferay with Docker.
 
 # Available Liferay Releases
+  - Liferay 7.1 Beta 3
   - Liferay 7.1 Beta 2
   - Liferay 7.1 Beta 1
   - Liferay 7.1 Alpha 2
@@ -42,7 +43,18 @@ These are the supported App servers:
   - Tomcat
 
 ## Branch name convention
-The convention for branch names, using `-` as separator, is:
+Since Liferay Portal 7.1, I won't support any other configuration than the default, which is Tomcat + HSQL. For that reason, the convention for branch names, using `-` as separator, is:
+  - Liferay major version: `7.1`
+  - Liferay community edition: `ce`
+  - Liferay release: `beta3`
+
+So, if you are using Liferay 7.1 Beta3, you should use the `7-ce-beta3` branch.
+
+The git branch is named using the same convention, i.e.:
+
+  https://github.com/mdelapenya/docker-liferay-portal/tree/7.1-ce-beta3
+
+For previous releases, the convention for branch names, using `-` as separator, was:
   - Liferay major version: `7`
   - Liferay community edition: `ce`
   - Liferay release: `ga5`
