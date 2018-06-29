@@ -7,7 +7,6 @@ main() {
   prepare_liferay_portal_properties
   prepare_liferay_tomcat_config
   prepare_liferay_deploy_directory
-  prepare_liferay_osgi_configs_directory
   run_portal "$@"
 }
 
@@ -57,32 +56,6 @@ prepare_liferay_deploy_directory() {
     [ -e "$war" ] && cp $LIFERAY_DEPLOY_DIR/*.war $LIFERAY_HOME/osgi/war
     break
   done
-
-  echo "
-  Continuing.
-  "
-}
-
-prepare_liferay_osgi_configs_directory() {
-  if [[ ! -d "$LIFERAY_CONFIG_DIR/osgi" ]]; then
-    echo "No 'configs/osgi' directory found.
-  If you wish to deploy custom OSGi configurations to
-  Liferay make sure you include a 'configs/osgi' directory
-  in the root of your project.
-
-  Continuing.
-  "
-    return 0
-  fi
-
-  echo "OSGi configs directory found.
-  The following contents are going to be synchronized
-  with Liferay:
-  "
-
-  tree $LIFERAY_CONFIG_DIR/osgi
-  mkdir -p $LIFERAY_HOME/osgi/configs
-  cp -r $LIFERAY_CONFIG_DIR/osgi/* $LIFERAY_HOME/osgi/configs 2>/dev/null || true
 
   echo "
   Continuing.
