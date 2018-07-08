@@ -43,7 +43,7 @@ Since Liferay Portal 7.1, I won't support any other configuration than the defau
   - Liferay community edition: `ce`
   - Liferay release: `beta3`
 
-So, if you are using Liferay 7.1 Beta3, you should use the `7-ce-beta3` branch.
+So, if you are using Liferay 7.1 Beta3, you should use the `7.1-ce-beta3` branch.
 
 The git branch is named using the same convention, i.e.:
 
