@@ -4,19 +4,11 @@ This repository contains some **nonofficial** pet-projects on how to use Liferay
 # Available Liferay Releases
   - Liferay 7.1.0 GA1
   - Liferay 7.1 RC 1
-  - Liferay 7.1 Beta 3
-  - Liferay 7.1 Beta 2
-  - Liferay 7.1 Beta 1
+  - Liferay 7.1 Betas (1, 2, and 3)
   - Liferay 7.1 Alpha 2
   - Liferay 7.1 Milestone 1
-  - Liferay 7.0.5 GA6
-  - Liferay 7.0.4 GA5
-  - Liferay 7.0.3 GA4
-  - Liferay 7.0.2 GA3
-  - Liferay 7.0.1 GA2
-  - Liferay 7.0.0 GA1
-  - Liferay 7.0.0 Beta8
-  - Liferay 7.0.0 Beta7
+  - Liferay 7.0 GAs (GA1, GA2, GA3, GA4, GA5 and GA6)
+  - Liferay 7.0.0 Betas (7 and 8)
   - Liferay 6.2.0 GA6
   - Liferay 6.1.3 GA3
 
