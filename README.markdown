@@ -18,6 +18,7 @@ This repository contains some **nonofficial** pet-projects on how to use Liferay
   - Liferay 7.0.0 Beta8
   - Liferay 7.0.0 Beta7
   - Liferay 6.2.0 GA6
+  - Liferay 6.1.3 GA3
 
 # Environment variables
 
