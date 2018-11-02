@@ -13,7 +13,7 @@ ENV LIFERAY_CONFIG_DIR=/tmp/liferay/configs
 ENV LIFERAY_DEPLOY_DIR=/tmp/liferay/deploy
 ENV CATALINA_HOME=$LIFERAY_HOME/tomcat-8.0.32
 ENV PATH=$CATALINA_HOME/bin:$PATH
-ENV LIFERAY_TOMCAT_URL=https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.0.5%20GA6/liferay-ce-portal-tomcat-7.0-ga6-20180320170724974.zip/download
+ENV LIFERAY_TOMCAT_URL=https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.0.6%20GA7/liferay-ce-portal-tomcat-7.0-ga7-20180507111753223.zip/download
 ENV GOSU_VERSION 1.10
 ENV GOSU_URL=https://github.com/tianon/gosu/releases/download/$GOSU_VERSION
 
@@ -21,11 +21,11 @@ WORKDIR /usr/local
 
 RUN mkdir -p "$LIFERAY_HOME" \
       && set -x \
-      && curl -fSL "$LIFERAY_TOMCAT_URL" -o /tmp/liferay-ce-portal-tomcat-7.0-ga6-20180320170724974.zip \
-      && unzip /tmp/liferay-ce-portal-tomcat-7.0-ga6-20180320170724974.zip -d /tmp/liferay \
-      && mv /tmp/liferay/liferay-ce-portal-7.0-ga6/* $LIFERAY_HOME/ \
-      && rm /tmp/liferay-ce-portal-tomcat-7.0-ga6-20180320170724974.zip \
-      && rm -fr /tmp/liferay/liferay-ce-portal-7.0-ga6 \
+      && curl -fSL "$LIFERAY_TOMCAT_URL" -o /tmp/liferay-ce-portal-tomcat-7.0-ga7-20180507111753223.zip \
+      && unzip /tmp/liferay-ce-portal-tomcat-7.0-ga7-20180507111753223.zip -d /tmp/liferay \
+      && mv /tmp/liferay/liferay-ce-portal-7.0-ga7/* $LIFERAY_HOME/ \
+      && rm /tmp/liferay-ce-portal-tomcat-7.0-ga7-20180507111753223.zip \
+      && rm -fr /tmp/liferay/liferay-ce-portal-7.0-ga7 \
       && chown -R liferay:liferay $LIFERAY_HOME \
       && wget -O /usr/local/bin/gosu "$GOSU_URL/gosu-$(dpkg --print-architecture)" \
       && wget -O /usr/local/bin/gosu.asc "$GOSU_URL/gosu-$(dpkg --print-architecture).asc" \
