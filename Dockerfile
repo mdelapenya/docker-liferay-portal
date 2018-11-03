@@ -17,7 +17,7 @@ ENV LIFERAY_TOMCAT_URL=https://sourceforge.net/projects/lportal/files/Liferay%20
 ENV GOSU_VERSION 1.10
 ENV GOSU_URL=https://github.com/tianon/gosu/releases/download/$GOSU_VERSION
 
-WORKDIR /usr/local
+WORKDIR $LIFERAY_HOME
 
 RUN mkdir -p "$LIFERAY_HOME" \
       && set -x \
