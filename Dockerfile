@@ -20,13 +20,7 @@ RUN set -x \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
   && useradd -ms /bin/bash liferay \
-  && curl -fSL "$LIFERAY_TOMCAT_URL" -o /tmp/liferay-ce-portal-tomcat.tar.gz \
   && mkdir -p "$LIFERAY_HOME" \
-  && mkdir -p /tmp/liferay \
-  && tar -xvf /tmp/liferay-ce-portal-tomcat.tar.gz -C /tmp/liferay \
-  && mv /tmp/liferay/liferay-ce-portal-7.1.1-ga2/* $LIFERAY_HOME/ \
-  && rm /tmp/liferay-ce-portal-tomcat.tar.gz \
-  && rm -fr /tmp/liferay/liferay-ce-portal-7.1.1-ga2 \
   && chown -R liferay:liferay $LIFERAY_HOME \
   && wget -O /usr/local/bin/gosu "$GOSU_URL/gosu-$(dpkg --print-architecture)" \
   && wget -O /usr/local/bin/gosu.asc "$GOSU_URL/gosu-$(dpkg --print-architecture).asc" \
@@ -36,6 +30,18 @@ RUN set -x \
   && rm -rf "$GNUPGHOME" /usr/local/bin/gosu.asc \
   && chmod +x /usr/local/bin/gosu \
   && gosu nobody true
+
+USER liferay
+
+RUN set -x \
+  && mkdir -p /tmp/liferay \
+  && curl -fSL "$LIFERAY_TOMCAT_URL" -o /tmp/liferay-ce-portal-tomcat.tar.gz \
+  && tar -xvf /tmp/liferay-ce-portal-tomcat.tar.gz -C /tmp/liferay \
+  && mv /tmp/liferay/liferay-ce-portal-7.1.1-ga2/* $LIFERAY_HOME/ \
+  && rm /tmp/liferay-ce-portal-tomcat.tar.gz \
+  && rm -fr /tmp/liferay/liferay-ce-portal-7.1.1-ga2
+
+USER root
 
 WORKDIR $LIFERAY_HOME
 
