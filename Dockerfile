@@ -1,5 +1,5 @@
 FROM mdelapenya/jdk:8-openjdk
-MAINTAINER Manuel de la Peña <manuel.delapenya@liferay.com>
+LABEL maintainer="Manuel de la Peña <manuel.delapenya@liferay.com>"
 
 ENV LIFERAY_HOME=/liferay
 ENV LIFERAY_SHARED=/storage/liferay
