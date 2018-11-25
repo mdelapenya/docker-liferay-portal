@@ -19,27 +19,25 @@ RUN set -x \
     curl telnet tree \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-  && useradd -ms /bin/bash liferay
+  && useradd -ms /bin/bash liferay \
+  && curl -fSL "$LIFERAY_TOMCAT_URL" -o /tmp/liferay-ce-portal-tomcat.tar.gz \
+  && mkdir -p "$LIFERAY_HOME" \
+  && mkdir -p /tmp/liferay \
+  && tar -xvf /tmp/liferay-ce-portal-tomcat.tar.gz -C /tmp/liferay \
+  && mv /tmp/liferay/liferay-ce-portal-7.1.1-ga2/* $LIFERAY_HOME/ \
+  && rm /tmp/liferay-ce-portal-tomcat.tar.gz \
+  && rm -fr /tmp/liferay/liferay-ce-portal-7.1.1-ga2 \
+  && chown -R liferay:liferay $LIFERAY_HOME \
+  && wget -O /usr/local/bin/gosu "$GOSU_URL/gosu-$(dpkg --print-architecture)" \
+  && wget -O /usr/local/bin/gosu.asc "$GOSU_URL/gosu-$(dpkg --print-architecture).asc" \
+  && export GNUPGHOME="$(mktemp -d)" \
+  && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
+  && gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
+  && rm -rf "$GNUPGHOME" /usr/local/bin/gosu.asc \
+  && chmod +x /usr/local/bin/gosu \
+  && gosu nobody true
 
 WORKDIR $LIFERAY_HOME
-
-RUN set -x \
-      && mkdir -p "$LIFERAY_HOME" \
-      && curl -fSL "$LIFERAY_TOMCAT_URL" -o /tmp/liferay-ce-portal-tomcat.tar.gz \
-      && mkdir -p /tmp/liferay \
-      && tar -xvf /tmp/liferay-ce-portal-tomcat.tar.gz -C /tmp/liferay \
-      && mv /tmp/liferay/liferay-ce-portal-7.1.1-ga2/* $LIFERAY_HOME/ \
-      && rm /tmp/liferay-ce-portal-tomcat.tar.gz \
-      && rm -fr /tmp/liferay/liferay-ce-portal-7.1.1-ga2 \
-      && chown -R liferay:liferay $LIFERAY_HOME \
-      && wget -O /usr/local/bin/gosu "$GOSU_URL/gosu-$(dpkg --print-architecture)" \
-      && wget -O /usr/local/bin/gosu.asc "$GOSU_URL/gosu-$(dpkg --print-architecture).asc" \
-      && export GNUPGHOME="$(mktemp -d)" \
-      && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
-      && gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
-      && rm -rf "$GNUPGHOME" /usr/local/bin/gosu.asc \
-      && chmod +x /usr/local/bin/gosu \
-      && gosu nobody true
 
 COPY ./configs/setenv.sh $CATALINA_HOME/bin/setenv.sh
 COPY ./entrypoint.sh /usr/local/bin
