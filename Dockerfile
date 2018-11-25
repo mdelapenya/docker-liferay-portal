@@ -1,12 +1,6 @@
 FROM mdelapenya/jdk:8-openjdk
 MAINTAINER Manuel de la Peña <manuel.delapenya@liferay.com>
 
-RUN apt-get update \
-  && apt-get install -y curl telnet tree \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-  && useradd -ms /bin/bash liferay
-
 ENV LIFERAY_HOME=/liferay
 ENV LIFERAY_SHARED=/storage/liferay
 ENV LIFERAY_CONFIG_DIR=/tmp/liferay/configs
@@ -16,6 +10,12 @@ ENV PATH=$CATALINA_HOME/bin:$PATH
 ENV LIFERAY_TOMCAT_URL=https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.1.1%20GA2/liferay-ce-portal-tomcat-7.1.1-ga2-20181112144637000.tar.gz/download
 ENV GOSU_VERSION 1.10
 ENV GOSU_URL=https://github.com/tianon/gosu/releases/download/$GOSU_VERSION
+
+RUN apt-get update \
+  && apt-get install -y curl telnet tree \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+  && useradd -ms /bin/bash liferay
 
 WORKDIR $LIFERAY_HOME
 
