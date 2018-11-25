@@ -1,16 +1,17 @@
 FROM mdelapenya/jdk:8-openjdk
 LABEL maintainer="Manuel de la Peña <manuel.delapenya@liferay.com>"
 
-ENV LIFERAY_HOME=/liferay \
-  LIFERAY_SHARED=/storage/liferay \
+ENV LIFERAY_HOME=/liferay
+
+ENV CATALINA_HOME=$LIFERAY_HOME/tomcat-9.0.10 \
+  GOSU_VERSION=1.10 \
   LIFERAY_CONFIG_DIR=/tmp/liferay/configs \
   LIFERAY_DEPLOY_DIR=/tmp/liferay/deploy \
-  CATALINA_HOME=$LIFERAY_HOME/tomcat-9.0.10 \
-  GOSU_VERSION=1.10 \
+  LIFERAY_SHARED=/storage/liferay \
   LIFERAY_TOMCAT_URL=https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.1.1%20GA2/liferay-ce-portal-tomcat-7.1.1-ga2-20181112144637000.tar.gz/download
 
-ENV PATH=$CATALINA_HOME/bin:$PATH \
-  GOSU_URL=https://github.com/tianon/gosu/releases/download/$GOSU_VERSION
+ENV GOSU_URL=https://github.com/tianon/gosu/releases/download/$GOSU_VERSION \
+  PATH=$CATALINA_HOME/bin:$PATH
 
 RUN apt-get update \
   && apt-get install -y curl telnet tree \
