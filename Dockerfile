@@ -13,16 +13,18 @@ ENV CATALINA_HOME=$LIFERAY_HOME/tomcat-9.0.10 \
 ENV GOSU_URL=https://github.com/tianon/gosu/releases/download/$GOSU_VERSION \
   PATH=$CATALINA_HOME/bin:$PATH
 
-RUN apt-get update \
-  && apt-get install -y curl telnet tree \
+RUN set -x \
+  && apt-get update \
+  && apt-get install -y  \
+    curl telnet tree \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
   && useradd -ms /bin/bash liferay
 
 WORKDIR $LIFERAY_HOME
 
-RUN mkdir -p "$LIFERAY_HOME" \
-      && set -x \
+RUN set -x \
+      && mkdir -p "$LIFERAY_HOME" \
       && curl -fSL "$LIFERAY_TOMCAT_URL" -o /tmp/liferay-ce-portal-tomcat.tar.gz \
       && mkdir -p /tmp/liferay \
       && tar -xvf /tmp/liferay-ce-portal-tomcat.tar.gz -C /tmp/liferay \
