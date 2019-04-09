@@ -1,5 +1,5 @@
 FROM java:6
-MAINTAINER Manuel de la Peña <manuel.delapenya@liferay.com>
+LABEL maintainer="social.mdelapenya@gmail.com"
 
 RUN apt-get update \
 	&& apt-get clean \
