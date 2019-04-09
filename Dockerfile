@@ -1,5 +1,5 @@
 FROM openjdk:7u211-jdk-jessie
-MAINTAINER Manuel de la Peña <manuel.delapenya@liferay.com>
+LABEL maintainer="social.mdelapenya@gmail.com"
 
 RUN apt-get update \
   && apt-get install -y curl tree \
