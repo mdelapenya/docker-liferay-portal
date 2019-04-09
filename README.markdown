@@ -19,7 +19,7 @@ This repository contains some **nonofficial** pet-projects on how to use Liferay
 
 This variable is optional and allows you to specify if the container is run using a debug configuration. In the case of Tomcat, port 9000 will be exposed for debugging the application server.
 
-### LIFERAY_JPDA_ENABLED
+### LIFERAY_JVM_OPTS
 
 This variable is optional and allows you to specify any value to the JAVA_OPTS, which will be appended to the existint Tomcat JAVA_OPTS. If no variable is passed, then an empty string will be appended.
 
