@@ -1,5 +1,5 @@
 FROM openjdk:8u212-jdk-stretch
-LABEL maintainer="Manuel de la Peña <manuel.delapenya@liferay.com>"
+LABEL maintainer="social.mdelapenya@gmail.com"
 
 ENV LIFERAY_HOME=/liferay
 
