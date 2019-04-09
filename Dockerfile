@@ -11,6 +11,7 @@ ENV CATALINA_HOME=$LIFERAY_HOME/tomcat-9.0.10 \
   LIFERAY_TOMCAT_URL=https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.1.2%20GA3/liferay-ce-portal-tomcat-7.1.2-ga3-20190107144105508.tar.gz/download
 
 ENV GOSU_URL=https://github.com/tianon/gosu/releases/download/$GOSU_VERSION \
+  GOSU_KEY=B42F6819007F00F88E364FD4036A9C25BF357DD4 \
   PATH=$CATALINA_HOME/bin:$PATH
 
 RUN set -x \
@@ -25,7 +26,9 @@ RUN set -x \
   && wget -O /usr/local/bin/gosu "$GOSU_URL/gosu-$(dpkg --print-architecture)" \
   && wget -O /usr/local/bin/gosu.asc "$GOSU_URL/gosu-$(dpkg --print-architecture).asc" \
   && export GNUPGHOME="$(mktemp -d)" \
-  && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
+  && gpg --yes --always-trust --keyserver pgp.mit.edu --recv-keys "$GOSU_KEY" || \
+    gpg --yes --always-trust --keyserver keyserver.pgp.com --recv-keys "$GOSU_KEY" || \
+    gpg --yes --always-trust --keyserver ha.pool.sks-keyservers.net --recv-keys "$GOSU_KEY" \
   && gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
   && rm -rf "$GNUPGHOME" /usr/local/bin/gosu.asc \
   && chmod +x /usr/local/bin/gosu \
