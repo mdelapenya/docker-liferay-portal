@@ -1,4 +1,4 @@
-FROM mdelapenya/jdk:7-openjdk
+FROM openjdk:7u211-jdk-jessie
 MAINTAINER Manuel de la Peña <manuel.delapenya@liferay.com>
 
 RUN apt-get update \
