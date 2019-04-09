@@ -29,12 +29,6 @@ There are some different image configurations supported under this repository, d
 
 If you are using any of the CE supported databases (**MySQL or PostgreSQL**), please **use the right Git branches** on this repository to check out the docker-compose files for each database, which will provide an additional Docker container with the supported database, linked to the container running Liferay Portal. Besides, this `README.md` file will change and describe the usage for each branch.
 
-## Supported Databases
-These are the supported Database Management System (*DBMS*):
-  - HSQL
-  - MySQL
-  - PostgreSQL
-
 ## Supported Application Servers
 These are the supported App servers:
   - Tomcat
@@ -42,29 +36,15 @@ These are the supported App servers:
 ## Branch name convention
 Since Liferay Portal 7.1, I won't support any other configuration than the default, which is Tomcat + HSQL. For that reason, the convention for branch names, using `-` as separator, is:
   - Liferay major version: `7.1`
-  - Liferay community edition: `ce`
-  - Liferay release: `beta3`
+  - Liferay release: `beta3, ga1, ga2...`
 
-So, if you are using Liferay 7.1 Beta3, you should use the `7.1-ce-beta3` branch.
+So, if you are using Liferay 7.1 Beta3, you should use the `7.1-beta3` branch.
 
 The git branch is named using the same convention, i.e.:
 
-  https://github.com/mdelapenya/docker-liferay-portal/tree/7.1-ce-beta3
+  https://github.com/mdelapenya/docker-liferay-portal/tree/7.1-beta3
 
-For previous releases, the convention for branch names, using `-` as separator, was:
-  - Liferay major version: `7`
-  - Liferay community edition: `ce`
-  - Liferay release: `ga5`
-  - Application server: `tomcat`
-  - DBMS: `hsql`
-
-So, if you are using Liferay 7 GA5 with MySQL or PostgreSQL, you should use the `7-ce-ga5-tomcat-mysql` or `7-ce-ga5-tomcat-postgres` branches, respectively.
-
-The git branches are named using the same convention, i.e.:
-
-  https://github.com/mdelapenya/docker-liferay-portal/tree/7-ce-ga5-tomcat-hsql
-  https://github.com/mdelapenya/docker-liferay-portal/tree/7-ce-ga5-tomcat-mysql
-  https://github.com/mdelapenya/docker-liferay-portal/tree/7-ce-ga5-tomcat-postgres
+For previous releases, I've removed the support in this repo for any database, which in the end is a matter of using docker compose for spinning up a database, and configuring the portal to connect to it. For this reason I want to keep this repo as simple as possible.
 
 # License
 These docker images are free software ("Licensed Software"); you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.
