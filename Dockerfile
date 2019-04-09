@@ -8,7 +8,7 @@ ENV CATALINA_HOME=$LIFERAY_HOME/tomcat-9.0.10 \
   LIFERAY_CONFIG_DIR=/tmp/liferay/configs \
   LIFERAY_DEPLOY_DIR=/tmp/liferay/deploy \
   LIFERAY_SHARED=/storage/liferay \
-  LIFERAY_TOMCAT_URL=https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.1.1%20GA2/liferay-ce-portal-tomcat-7.1.1-ga2-20181112144637000.tar.gz/download
+  LIFERAY_TOMCAT_URL=https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.1.2%20GA3/liferay-ce-portal-tomcat-7.1.2-ga3-20190107144105508.tar.gz/download
 
 ENV GOSU_URL=https://github.com/tianon/gosu/releases/download/$GOSU_VERSION \
   PATH=$CATALINA_HOME/bin:$PATH
@@ -37,9 +37,9 @@ RUN set -x \
   && mkdir -p /tmp/liferay \
   && curl -fSL "$LIFERAY_TOMCAT_URL" -o /tmp/liferay-ce-portal-tomcat.tar.gz \
   && tar -xvf /tmp/liferay-ce-portal-tomcat.tar.gz -C /tmp/liferay \
-  && mv /tmp/liferay/liferay-ce-portal-7.1.1-ga2/* $LIFERAY_HOME/ \
+  && mv /tmp/liferay/liferay-ce-portal-7.1.2-ga3/* $LIFERAY_HOME/ \
   && rm /tmp/liferay-ce-portal-tomcat.tar.gz \
-  && rm -fr /tmp/liferay/liferay-ce-portal-7.1.1-ga2
+  && rm -fr /tmp/liferay/liferay-ce-portal-7.1.2-ga3
 
 USER root
 
