@@ -1,5 +1,5 @@
 FROM openjdk:8u212-jdk-stretch
-MAINTAINER Manuel de la Peña <manuel.delapenya@liferay.com>
+LABEL maintainer="social.mdelapenya@gmail.com"
 
 RUN apt-get update \
   && apt-get install -y curl telnet tree \
