@@ -40,9 +40,9 @@ RUN set -x \
   && mkdir -p /tmp/liferay \
   && curl -fSL "$LIFERAY_TOMCAT_URL" -o /tmp/liferay-ce-portal-tomcat.tar.gz \
   && tar -xvf /tmp/liferay-ce-portal-tomcat.tar.gz -C /tmp/liferay \
-  && mv /tmp/liferay/liferay-ce-portal-7.1.2-ga3/* $LIFERAY_HOME/ \
+  && mv /tmp/liferay/liferay-portal-7.1.2-ga3/* $LIFERAY_HOME/ \
   && rm /tmp/liferay-ce-portal-tomcat.tar.gz \
-  && rm -fr /tmp/liferay/liferay-ce-portal-7.1.2-ga3
+  && rm -fr /tmp/liferay/liferay-portal-7.1.2-ga3
 
 USER root
 
