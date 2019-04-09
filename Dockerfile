@@ -1,4 +1,4 @@
-FROM mdelapenya/jdk:8-openjdk
+FROM openjdk:8u212-jdk-stretch
 LABEL maintainer="Manuel de la Peña <manuel.delapenya@liferay.com>"
 
 ENV LIFERAY_HOME=/liferay
