@@ -1,4 +1,4 @@
-FROM java:8
+FROM openjdk:8u212-jdk-stretch
 MAINTAINER Manuel de la Peña <manuel.delapenya@liferay.com>
 
 RUN apt-get update \
