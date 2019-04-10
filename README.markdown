@@ -25,9 +25,7 @@ This variable is optional and allows you to specify if the container is run usin
 This variable is optional and allows you to specify any value to the JAVA_OPTS, which will be appended to the existint Tomcat JAVA_OPTS. If no variable is passed, then an empty string will be appended.
 
 # Customized Environment support
-There are some different image configurations supported under this repository, depending on if you want to use Liferay Portal with a different database or application server.
-
-If you are using any of the CE supported databases (**MySQL or PostgreSQL**), please **use the right Git branches** on this repository to check out the docker-compose files for each database, which will provide an additional Docker container with the supported database, linked to the container running Liferay Portal. Besides, this `README.md` file will change and describe the usage for each branch.
+We have removed the database support from this repo, which means pruning all old branches with code related to databases. For that reason, we will only maintain the base image so you could extend it very easily using, i.e., Docker Compose.
 
 ## Supported Application Servers
 These are the supported App servers:
