@@ -26,7 +26,8 @@ RUN set -x \
   && wget -O /usr/local/bin/gosu "$GOSU_URL/gosu-$(dpkg --print-architecture)" \
   && wget -O /usr/local/bin/gosu.asc "$GOSU_URL/gosu-$(dpkg --print-architecture).asc" \
   && export GNUPGHOME="$(mktemp -d)" \
-  && gpg --yes --always-trust --keyserver pgp.mit.edu --recv-keys "$GOSU_KEY" || \
+  && gpg --yes --always-trust --keyserver keyserver.ubuntu.com --recv-keys "$GOSU_KEY" || \
+    gpg --yes --always-trust --keyserver pgp.mit.edu --recv-keys "$GOSU_KEY" || \
     gpg --yes --always-trust --keyserver keyserver.pgp.com --recv-keys "$GOSU_KEY" || \
     gpg --yes --always-trust --keyserver ha.pool.sks-keyservers.net --recv-keys "$GOSU_KEY" \
   && gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
