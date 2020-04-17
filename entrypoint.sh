@@ -12,7 +12,7 @@ main() {
 }
 
 show_motd() {
-  echo "Starting Liferay 7.1 instance.
+  echo "Starting Liferay 7.2 instance.
 
   LIFERAY_HOME: $LIFERAY_HOME
   "
